@@ -149,6 +149,142 @@ Once the stack creation is complete, let’s check that the application deployme
 
 4.If you have configured everything correctly, you should be able to view a webpage with ‘Welcome to Re:Invent 2020 The Well Architected Way’ as the page title.
 
-Adding /details.php to the end of your DNS address will list the packages currently available, together with the AMI which has been used to create the instance as follows:
+5.Adding /details.php to the end of your DNS address will list the packages currently available, together with the AMI which has been used to create the instance as follows:
 
 <img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/10d21e1d-084d-4c24-9dda-9dc7106045a4">
+
+6.Take note of the installed packages and AMI Id (Copy and paste this elsewhere we will use this to confirm the changes later).
+
+7.When you have confirmed that the application deployment was successful, move to section 3 which will deploy your AMI Builder Pipeline.
+
+
+3.Deploy The AMI Builder Pipeline.
+
+In this section we will be building our Amazon Machine Image Pipeline leveraging EC2 Image Builder service. EC2 Image Builder is a service that simplifies the creation, maintenance, validation, sharing, and deployment of Linux or Windows Server images for use with Amazon EC2 and on-premises. Using this service, eliminates the automation heavy lifting you have to build in order to streamline the build and management of your Amazon Machine Image.
+
+Upon completion of this section we will have an Image builder pipeline that will be responsible for taking a golden AMI Image, and produce a newly patched Amazon Machine Image, ready to be deployed to our application cluster, replacing the outdated one.
+
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/5a0a8a02-c5ad-4700-af84-7029ca2cc4ba">
+
+In this section you have the option to build the pipeline manually using AWS console, or if you are keen to complete the lab quickly, you can simply deploy from the cloudformation template.
+
+ 1.Click here to build your pipeline using CloudFormation on the command line
+
+3.1. Download The Cloudformation Template.
+
+Download the template here.
+
+3.2. Deploy Using The Command Line.
+
+Command Line:
+
+To deploy from the command line, ensure that you have installed and configured AWS CLI with the appropriate credentials:
+
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/cb130555-fef1-4365-b63a-1614c61d9d25">
+
+Note :
+
+1.For simplicity, we have used Sydney ‘ap-southeast-2’ as the default region for this lab.
+
+2.We have also pre-configured the MasterAMI parameter to be the AMI id of Amazon Linux 2 AMI (HVM) in Sydney region ami-0f96495a064477ffb. If you choose to to use a different region, please change the AMI Id accordingly for your region.
+
+ Click here to build your pipeline using CloudFormation through the console
+Console:
+3.1. Download The Cloudformation Template.
+Download the template here.
+
+3.2. Deploy Using The Console.
+If you need detailed instructions on how to deploy CloudFormation stacks from within the console, please follow this guide.
+
+1.Use pattern3-pipeline as the Stack Name.
+
+2.Provide the name of the vpc cloudformation stack you create in section 1 ( we used pattern3-base as default ) as the BaselineVpcStack parameter value.
+
+3.Use the AMI Id of Amazon Linux 2 AMI (HVM) as the MasterAMI parameter value. ( In Sydney region ami-0f96495a064477ffb if you choose to to use a different region, please change the AMI Id accordingly for your region. )
+
+3.3. Take note of the ARN.
+
+1.When the CloudFormation template deployment is completed, note the output produced by the stack.
+
+2.You can do this by clicking on the stack name you just created, and select the ‘Outputs Tab’ as shown in diagram below.
+
+3.Please take note of the Pipeline ARN specified under Pattern3ImagePipeline output.
+
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/0584f75f-4c59-4fc7-99a2-a60eed27fdc2">
+
+4.DEPLOY THE BUILD AUTOMATION WITH SSM
+
+Now that our AMI Builder Pipeline is built, we can now work on the final automation stage with Systems Manager.
+
+In this section we will orchestrate the build of a newly patched AMI and its associated deployment into our application cluster.
+
+To automate this activities we will leverage AWS Systems Manager Automation Document.
+
+Using our SSM Automation document we will execute the following activities:
+
+1.Automate the execution of the EC2 Image Builder Pipeline.
+
+2.Wait for the pipeline to complete the build, and capture the newly created AMI with updated OS patch.
+
+3.Then it will Update the CloudFormation application stack with the new patched Amazon Machine Image.
+
+4.This AMI update to the stack will in turn trigger the CloudFormation AutoScalingReplacingUpdate policy to perform a simple equivalent of a blue/green deployment of the new Autoscaling group.
+
+Note:
+
+Using this approach, we streamline the creation of our AMI, and at the same time minimize interruption to applications within the environment.
+
+Additionally, by leveraging the automation built in Cloudformation through autoscaling update policy, we reduce the complexity associated with building out a blue/green deployment structure manually. Lets look at how this works in detail:
+
+
+1.Firstly, CloudFormation detects the need to update the LaunchConfiguration with a new Amazon Machine Image.
+
+2.Then, CloudFormation will launch a new AutoScalingGroup, along with it’s compute resource (EC2 Instance) with the newly patched AMI.
+
+3.CloudFormation will then wait until all instances are detected healthy by the Load balancer, before terminating the old AutoScaling Group, ultimately achieving a blue/green model of deployment.
+
+4.Should the new compute resource failed to deploy, cloudformation will rollback and keep the old compute resource running.
+
+For details about how this is implemented in the CloudFormation template, please review the pattern3-application.yml template deployed in section 2.
+
+Once we complete this section our architecture will reflect the following diagram:
+
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/6cbbca3a-4c9d-48d7-9df0-982cc4db7638">
+
+In this section you have the option to build the resources manually using AWS console. If however you are keen to complete the lab quickly, you can simply deploy from the CloudFormation template and take a look at the deployed architecture. Select the appropriate section:
+
+ Build with a CloudFormation template on the command-line
+ 
+4.1. Get The Template
+
+The template for Section 4 which can be found here.
+
+
+4.2. Deploy From The Command Line
+
+To deploy from the command line, ensure that you have installed and configured AWS CLI with the appropriate credentials. When you are ready, execute the following command:
+
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/310c2fe8-5eed-43b6-aed5-9122f72ec0c4">
+
+4.3. Record The CloudFormation Output.
+Once the template is finished execution, note the Automation Document Name from the Cloudformation output specified under Pattern3CreateImageOutput.
+
+ Build with a CloudFormation template in the console
+4.1. Get The Template
+The template for Section 4 which can be found here.
+
+4.2. Deploy From The Console
+
+To deploy the template from console please follow this guide for information on how to deploy the cloudformation template.
+
+1.Use pattern3-automate as the Stack Name.
+
+2.Provide the ARN of the pipeline you created in section 3.2.6 as ImageBuilderPipelineARN parameter value.
+
+3.Provide the cloudfromation stack name you created in section 2.1 as ApplicationStack parameter value.
+
+4.3. Record The CloudFormation Output.
+
+Once the template is finished execution, note the Automation Document Name from the Cloudformation output specified under Pattern3CreateImageOutput.
+
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/a272c12f-30f2-4e26-898e-ae4087b904dc">
