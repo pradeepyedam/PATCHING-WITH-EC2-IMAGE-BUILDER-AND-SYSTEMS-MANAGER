@@ -288,3 +288,5 @@ To deploy the template from console please follow this guide for information on 
 Once the template is finished execution, note the Automation Document Name from the Cloudformation output specified under Pattern3CreateImageOutput.
 
 <img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/a272c12f-30f2-4e26-898e-ae4087b904dc">
+
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/0321deda-382c-49fe-8647-0394a9f26ebe">
