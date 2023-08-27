@@ -59,14 +59,19 @@ To deploy from the command line, ensure that you have installed and configured A
 
 1.1.1. Execute Command
 
-<img width="654" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/824a37bd-c715-4067-805e-e64b6453beae">
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/824a37bd-c715-4067-805e-e64b6453beae">
 
 Note: Please adjust your command-line if you are using profiles within your aws command line as required.
 
 1.1.2.
 Confirm that the stack has installed correctly. You can do this by running the describe-stacks command as follows:
 
-<img width="654" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/8308c470-9aee-47bb-8c73-6b56149e6c60">
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/8308c470-9aee-47bb-8c73-6b56149e6c60">
+
+Locate the StackStatus and confirm it is set to CREATE_COMPLETE as shown here:
+
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/10ea9d17-7a76-4dad-b1c6-7cff950fd3fd">
+
 
 1.1.3.
 
