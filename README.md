@@ -33,3 +33,12 @@ Goals
 
 2.Systems Manager Automated Document experience.
 
+Steps:
+
+1.Deploy The Lab Base Infrastructure:
+
+In this section, we will build out a Virtual Public Cloud (VPC), together with public and private subnets across two Availability Zones, Internet Gateway and NAT gateway along with the necessary routes from both public and private subnets.
+
+This VPC will become the baseline network architecture within which the application will run. When we successfully complete our initial stage template deployment, our deployed workload should reflect the following diagram:
+
+![image](https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/e2621207-7238-47b1-ac56-0dbdbdddb896)
