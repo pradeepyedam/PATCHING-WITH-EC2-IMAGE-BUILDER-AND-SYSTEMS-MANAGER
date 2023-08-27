@@ -41,7 +41,8 @@ In this section, we will build out a Virtual Public Cloud (VPC), together with p
 
 This VPC will become the baseline network architecture within which the application will run. When we successfully complete our initial stage template deployment, our deployed workload should reflect the following diagram:
 
-"C:\Users\dell\Pictures\Saved Pictures\klm.png"
+![image](https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/d6e5dd02-8c51-4c50-99b9-6bfbdb9bb6a4)
+
 
 To deploy the template for the base infrastructure build follow the approptiate steps:
 
