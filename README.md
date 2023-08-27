@@ -60,3 +60,28 @@ To deploy from the command line, ensure that you have installed and configured A
 1.1.1. Execute Command
 
 <img width="654" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/824a37bd-c715-4067-805e-e64b6453beae">
+
+Note: Please adjust your command-line if you are using profiles within your aws command line as required.
+
+1.1.2.
+Confirm that the stack has installed correctly. You can do this by running the describe-stacks command as follows:
+
+<img width="654" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/8308c470-9aee-47bb-8c73-6b56149e6c60">
+
+1.1.3.
+
+Take note of this stack output as we will need it for later sections of the lab.
+
+ Click here for CloudFormation console deployment steps
+
+Console:
+
+If you need detailed instructions on how to deploy CloudFormation stacks from within the console, please follow this guide.
+
+Use pattern3-base as the Stack Name, as this is referenced by other stacks later in the lab.
+
+1.2. Note Cloudformation Template Outputs
+
+When the CloudFormation template deployment is completed, note the outputs produced by the newly created stack as these will be required at later points in the lab.
+
+You can do this by clicking on the stack name you just created, and select the Outputs Tab as shown in diagram below.
