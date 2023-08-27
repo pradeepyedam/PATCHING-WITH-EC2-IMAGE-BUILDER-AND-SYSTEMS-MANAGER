@@ -90,3 +90,6 @@ Use pattern3-base as the Stack Name, as this is referenced by other stacks later
 When the CloudFormation template deployment is completed, note the outputs produced by the newly created stack as these will be required at later points in the lab.
 
 You can do this by clicking on the stack name you just created, and select the Outputs Tab as shown in diagram below.
+
+<img width="960" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/f41c4833-0f36-462a-81ba-c1402bdd32a0">
+
