@@ -26,3 +26,10 @@ CloudFormation with AutoScalingReplacingUpdate update policy, to gracefully depl
 We will deploy section 1 and 2 of the lab with CloudFormation templates to get your environment built as efficiently as possible. This will allow the base infrastructure and application deployment to be completed quickly so you can focus on the main lab objectives which are covered in sections 3 and 4. In these sections, we will give you the choice of either using additional pre-built templates or manual steps to complete the EC2 Image Builder and Systems Manager Document configuration.
 
 The skills you learn from this lab will help you secure your workloads in alignment with the AWS Well-Architected Framework.
+
+Goals
+
+1.EC2 Image Builder configuration experience.
+
+2.Systems Manager Automated Document experience.
+
