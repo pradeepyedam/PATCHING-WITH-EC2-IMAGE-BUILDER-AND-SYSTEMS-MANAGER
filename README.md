@@ -17,3 +17,12 @@ Ensuring that you have an automated patching solution, will contribute to buildi
 There are multiple different approaches available to automate operating system patching using a combination of AWS services.
 
 One approach is to utilize a blue/green deployment methodology to build an entirely new Amazon Machine Image (AMI) that contains the latest operating system patch, which can be deployed into the application cluster. This lab will walk you through this approach, utilizing a combination of the following services and features:
+
+1.EC2 Image Builder to automate creation of the AMI.
+
+2.Systems Manager Automated Document to orchestrate the execution.
+
+CloudFormation with AutoScalingReplacingUpdate update policy, to gracefully deploy the newly created AMI into the workload with minimal interruption to the application availability.
+We will deploy section 1 and 2 of the lab with CloudFormation templates to get your environment built as efficiently as possible. This will allow the base infrastructure and application deployment to be completed quickly so you can focus on the main lab objectives which are covered in sections 3 and 4. In these sections, we will give you the choice of either using additional pre-built templates or manual steps to complete the EC2 Image Builder and Systems Manager Document configuration.
+
+The skills you learn from this lab will help you secure your workloads in alignment with the AWS Well-Architected Framework.
