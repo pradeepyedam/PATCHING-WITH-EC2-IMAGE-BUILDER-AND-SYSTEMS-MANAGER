@@ -41,4 +41,21 @@ In this section, we will build out a Virtual Public Cloud (VPC), together with p
 
 This VPC will become the baseline network architecture within which the application will run. When we successfully complete our initial stage template deployment, our deployed workload should reflect the following diagram:
 
-![image](https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/e2621207-7238-47b1-ac56-0dbdbdddb896)
+"C:\Users\dell\Pictures\Saved Pictures\klm.png"
+
+To deploy the template for the base infrastructure build follow the approptiate steps:
+
+1.1. Get the Cloudformation Template.
+To deploy the first CloudFormation template, you can either deploy directly from the command line or via the console.
+
+You can get the template here.
+
+ Click here for CloudFormation command-line deployment steps
+
+Command Line Deployment:
+
+To deploy from the command line, ensure that you have installed and configured AWS CLI with the appropriate credentials.
+
+1.1.1. Execute Command
+
+<img width="654" alt="image" src="https://github.com/pradeepyedam/PATCHING-WITH-EC2-IMAGE-BUILDER-AND-SYSTEMS-MANAGER/assets/134625420/824a37bd-c715-4067-805e-e64b6453beae">
