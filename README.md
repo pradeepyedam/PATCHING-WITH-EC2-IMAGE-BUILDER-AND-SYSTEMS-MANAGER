@@ -1,11 +1,5 @@
 AUTONOMOUS PATCHING WITH EC2 IMAGE BUILDER AND SYSTEMS MANAGER
 
-Authors
-
-1.Tim Robinson, Well-Architected Geo Solutions Architect.
-
-2.Stephen Salim, Well-Architected Geo Solutions Architect.
-
 Introduction
 
 Patching is a vital component to any security strategy which ensures that your compute environments are operating with the latest code revisions available. This in turn means that you are running with the latest security updates for the system, which reduces the potential attack surface of your workload.
